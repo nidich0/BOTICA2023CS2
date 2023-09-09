@@ -1,0 +1,20 @@
+databases:
+  - name: postgres
+    databaseName: appBotica
+    user: root
+
+services:
+  - type: web
+    name: Botica-app 
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: bundle exec rails s
+    envVars: 
+        - key: RAILS_MASTER_KEY
+          sync: false
+       - key: DATABASE_URL
+          fromDatabase:
+            name: appBotica
+            property: connectionString
+
+
