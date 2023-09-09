@@ -13,15 +13,6 @@ admin_user = User.create(
   role: :admin
 )
 
-
-admin_user = User.create(
-  email: 'admin22@gmail.com',
-  password: 'popeyelemarinosoy123',
-  role: :admin
-)
-
-###el terror de las venecas
-# barata me la pelas
 saller_user = User.create(
   email: 'saller@gmail.com',
   password: 'popeyelemarinosoy123',
