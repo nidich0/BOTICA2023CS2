@@ -28,6 +28,7 @@ class ProductDashboard < Administrate::BaseDashboard
     name
     category
     stock
+    price
     description
   ].freeze
 
