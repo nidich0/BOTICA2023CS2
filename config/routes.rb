@@ -16,5 +16,4 @@ Rails.application.routes.draw do
     resources :suppliers, :products, :categories, :clients, :sales
     root 'suppliers#index'
   end
-
 end

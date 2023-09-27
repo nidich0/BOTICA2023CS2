@@ -35,16 +35,15 @@
           <% end %>
         </div>
         <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
+          <div class="flex space-x-4 text-white">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
             <% if current_user.admin? %>
               <%= link_to "Dashboard", '/admin', class: active_class('/admin'), role: "menuitem", tabindex: "-1" %>
-              <%= link_to "Productos", '/admin/products', class: active_class('/admin/products'), role: "menuitem", tabindex: "-1" %>
-              <%= link_to "Categories", '/admin/categories', class: active_class('/admin/categories'), role: "menuitem", tabindex: "-1" %>
-            
+              <%= link_to t('products'), '/admin/products', class: active_class('/admin/products'), role: "menuitem", tabindex: "-1" %>
+              <%= link_to t('category'), '/admin/categories', class: active_class('/admin/categories'), role: "menuitem", tabindex: "-1" %>
+
             <% end %>
 
-            
           </div>
         </div>
       </div>

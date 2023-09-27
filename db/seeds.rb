@@ -9,7 +9,7 @@
 # Create a admin user
 admin_user = User.create(
   email: 'admin@gmail.com',
-  password: 'popeyelemarinosoy123',
+  password: ' ',
   role: :admin
 )
 
