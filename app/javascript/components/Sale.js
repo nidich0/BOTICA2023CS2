@@ -2,17 +2,17 @@ import React from "react";
 import toast from "react-hot-toast";
 
 export default function Sale({ cart, total, setCart, clientId }) {
-  const saleParams = {
-    total: total,
-    products: cart,
-    client_id: clientId,
-  };
-
   function processSale() {
     if (cart.length === 0) {
       toast.error("No hay productos en el carrito");
       return;
     }
+    const saleParams = {
+      total: total,
+      products: cart,
+      client_id: clientId,
+    };
+
     const params = {
       method: "POST",
       headers: {
@@ -24,8 +24,12 @@ export default function Sale({ cart, total, setCart, clientId }) {
     fetch("/sales", params)
       .then((response) => response.json())
       .then((data) => {
-        toast.success("Venta realizada con éxito");
-        setCart([]);
+        if (data.hasOwnProperty("error")) {
+          toast.error(data.error);
+        } else {
+          toast.success("Venta realizada con éxito");
+          setCart([]);
+        }
       })
       .catch((error) => {
         toast.error("Error al realizar la venta");
