@@ -8,8 +8,49 @@ export default function ClientModal({
   setSelected,
   setClients,
 }) {
+  const [dni, setDni] = useState("");
+  const [client, setClient] = useState({
+    name: "",
+    address: "",
+    telephone: "",
+  });
+
   function closeModal() {
     setIsOpen(false);
+  }
+
+  async function fetchReniecData(dni) {
+    const apiUrl = `/clients/dnis/${dni}`;
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      debugger
+      if (data.error) {
+        toast.error(data.error);
+        return;
+      } else {
+        setClient({
+          name: data.name,
+          address: "",
+          telephone: "",
+        });
+      }
+
+      return data;
+    } catch (error) {
+      console.error("An error occurred:", error);
+      toast.error("Error al obtener los datos del cliente");
+    }
+  }
+
+  async function handleDniChange(event) {
+    const dni = event.target.value;
+    setDni(dni);
+
+    if (dni.length === 8) {
+      await fetchReniecData(dni);
+    }
   }
 
   async function handleSubmit(event) {
@@ -34,6 +75,14 @@ export default function ClientModal({
       const newClient = { id: data.id, name: data.name };
       setClients((clients) => [...clients, newClient]);
       setSelected(newClient);
+
+      // limpiar formulario
+      setClient({
+        name: "",
+        address: "",
+        telephone: "",
+      });
+      setDni("");
 
       toast.success("Cliente creado con éxito");
     } catch (error) {
@@ -82,6 +131,25 @@ export default function ClientModal({
                     <form onSubmit={handleSubmit}>
                       <div className="mb-6">
                         <label
+                          htmlFor="dni"
+                          className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >
+                          Dni
+                        </label>
+                        <input
+                          type="number"
+                          minLength="8"
+                          maxLength="8"
+                          onChange={(e) => handleDniChange(e)}
+                          value={dni}
+                          id="dni"
+                          className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                          placeholder="Dni"
+                          required
+                        />
+                      </div>
+                      <div className="mb-6">
+                        <label
                           htmlFor="name"
                           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >
@@ -90,6 +158,8 @@ export default function ClientModal({
                         <input
                           type="name"
                           id="name"
+                          value={client.name}
+                          onChange={(e) => setClient({ ...client, name: e.target.value })}
                           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
                           placeholder="Nombre"
                           required
@@ -98,6 +168,8 @@ export default function ClientModal({
                       <div className="mb-6">
                         <label
                           htmlFor="address"
+                          value={client.address}
+                          onChange={(e) => setClient({ ...client, address: e.target.value })}
                           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                         >
                           Dirección
@@ -114,6 +186,8 @@ export default function ClientModal({
                         <label
                           htmlFor="telephone"
                           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                          value={client.telephone}
+                          onChange={(e) => setClient({ ...client, telephone: e.target.value })}
                         >
                           Telefono
                         </label>
