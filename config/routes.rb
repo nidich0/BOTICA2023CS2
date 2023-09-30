@@ -16,4 +16,8 @@ Rails.application.routes.draw do
     resources :suppliers, :products, :categories, :clients, :sales
     root 'suppliers#index'
   end
+
+  namespace :clients do
+    resources :dnis, only: [:show]
+  end
 end
