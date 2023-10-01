@@ -21,7 +21,7 @@ By default, it renders:
   <title>
     <%= content_for(:title) %> - <%= application_title %>
   </title>
-  
+
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 
@@ -43,6 +43,20 @@ By default, it renders:
       <%= yield %>
     </main>
   </div>
+
+    <ul class="fixed bottom-0 w-full flex items-center justify-center bg-gray-800">
+      <% I18n.available_locales.each do |locale| %>
+        <li class="block px-4 py-2 text-sm text-white-700">
+          <% if I18n.locale == locale %>
+            <div class="bg-green-300 p-2">
+              <%= t(locale, scope: 'locales') %>
+            </div>
+          <% else %>
+            <%= link_to t(locale, scope: 'locales'), url_for(locale: locale), class: "text-white hover:text-blue-400" %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
 
   <%= render "javascript" %>
 </body>

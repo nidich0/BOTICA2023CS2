@@ -1,5 +1,4 @@
 class SalesDetail < ApplicationRecord
   belongs_to :sale
-  belongs_to :product
-  has_many :price , through: :product
+  belongs_to :product, optional: true
 end

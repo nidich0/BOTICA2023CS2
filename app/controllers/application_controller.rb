@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Internationalization
+  
   before_action :authenticate_user!
   # before_action :set_render_cart
   # before_action :initialize_cart

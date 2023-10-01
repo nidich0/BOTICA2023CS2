@@ -29,10 +29,9 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
-  category: "Category"
-  products: "Products"
+es:
+  category: "Categorias"
+  products: "Productos"
   locales:
-    en: "English"
-    es: "Spanish"
+    en: "Ingles"
+    es: "Español"

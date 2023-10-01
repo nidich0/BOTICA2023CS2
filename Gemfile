@@ -79,3 +79,9 @@ gem 'devise'
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "prawn","~> 2.4"
+
+gem 'rack-mini-profiler'
+
+gem 'mobility', '~> 1.3.0.rc1'
+
+gem 'rails-i18n'
