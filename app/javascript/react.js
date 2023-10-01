@@ -1,9 +1,14 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import Seller from "./components/Seller";
 
-const root = document.getElementById("root");
-
-if (root) {
-  ReactDOM.render(<Seller />, root);
+function renderComponent() {
+  const container = document.getElementById("root");
+  if (container) {
+    const root = createRoot(container);
+    root.render(<Seller />);
+  }
 }
+
+document.addEventListener("DOMContentLoaded", renderComponent);
+document.addEventListener("turbo:render", renderComponent);
