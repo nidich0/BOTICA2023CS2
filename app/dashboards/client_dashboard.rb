@@ -9,8 +9,9 @@ class ClientDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    address: Field::String,
     name: Field::String,
+    dni: Field::String,
+    address: Field::String,
     telephone: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -23,16 +24,18 @@ class ClientDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
     id
-    address
     name
+    dni
+    address
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    address
     name
+    dni
+    address
     telephone
     created_at
     updated_at
@@ -42,8 +45,9 @@ class ClientDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    address
     name
+    dni
+    address
     telephone
   ].freeze
 

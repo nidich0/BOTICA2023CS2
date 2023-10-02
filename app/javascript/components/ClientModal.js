@@ -60,6 +60,7 @@ export default function ClientModal({
       name: elements["name"].value,
       address: elements["address"].value,
       telephone: elements["telephone"].value,
+      dni: elements["dni"].value,
     };
 
     try {
