@@ -6,7 +6,7 @@ image: condef5/botica02
 
 # Deploy to these servers.
 servers:
-  - 143.198.154.80
+  - 157.230.188.142
 
 # Credentials for your image host.
 registry:
@@ -22,7 +22,7 @@ registry:
 # Remember to run `kamal env push` after making changes!
 env:
   clear:
-    DB_HOST: 143.198.154.80
+    DB_HOST: 157.230.188.142
   secret:
     - RAILS_MASTER_KEY
     - POSTGRES_PASSWORD
@@ -45,7 +45,7 @@ builder:
 accessories:
   db:
     image: postgres:15
-    host: 143.198.154.80
+    host: 157.230.188.142
     port: 5432
     env:
       clear:
