@@ -1,23 +1,21 @@
 Rails.application.routes.draw do
-  resources :items
-  resources :clients
-  resources :products
+  get "up" => "rails/health#show", as: :rails_health_check
 
-  get 'download_prueba/:id', to: 'sales#download_prueba'
-  get 'download_pdf/:id', to: 'sales#download_pdf'
-  get 'showSaleDetails/:id', to: 'sales#showSaleDetails'
-  resources :sales
-  # get 'dashboard_seller/index'
-  get 'dashboard_seller', to: 'dashboard_seller#index'
   root 'home#index'
+
   devise_for :users
+
+  resources :clients
+  resources :items
+  resources :products
+  resources :sales
+
+  namespace :clients do
+    resources :dnis, only: [:show]
+  end
 
   namespace :admin do
     resources :suppliers, :products, :categories, :clients, :sales
     root 'suppliers#index'
-  end
-
-  namespace :clients do
-    resources :dnis, only: [:show]
   end
 end
